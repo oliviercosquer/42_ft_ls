@@ -1,5 +1,31 @@
 #include <ft_ls.h>
 
+t_file	*ft_create_root(int argc, char **argv)
+{
+	t_file	*root_files;
+	t_file	*tmp;
+	int		i;
+
+	root_files	= NULL;
+	tmp	= NULL;
+	i = 1;
+
+	while (i < argc)
+	{
+		if (!ft_is_option(argv[i]))
+		{
+			tmp = ft_new_file(NULL);
+			tmp->name = ft_strdup(argv[i]);
+			if (!root_files)
+				root_files = tmp;
+			else
+				ft_add_folder(tmp, root_files);
+		}
+		i++;
+	}
+	return (root_files);
+}
+
 void	ft_add_file(t_file *file, t_file *root)
 {
 	if (root->files)

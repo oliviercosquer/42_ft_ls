@@ -20,19 +20,12 @@ int		main(int argc, char **argv)
 	}
 	else
 	{
-		i = 1;
-		while (i < argc)
+		folder = ft_create_root(argc, argv);
+		ft_order(&folder, options);
+		while (folder)
 		{
-			if (ft_strchr(argv[i], '-') == 0)
-			{
-				path = ft_strdup(argv[i]);
-				if (folder == NULL)
-					folder = ft_read(path, options);
-				else
-					folder->next = ft_read(path, options);
-				ft_strdel(&path);
-			}
-			i++;
+			ft_read(folder->name, options);
+			folder = folder->next;
 		}
 	}
 	return (0);

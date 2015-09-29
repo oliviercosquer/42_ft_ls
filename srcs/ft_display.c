@@ -7,25 +7,22 @@ void	ft_display_folder(t_file *root, char *options)
 
 	many = 0;
 	(void)root;
-	/*while (root)
-	{*/
-		name = ft_strchr(root->name, '/') + 1;
-		if (root->next)
-			many = 1;
-		if ((ft_strchr(options, 'l') && many) || ft_strchr(options, 'R'))
+
+	name = ft_strchr(root->name, '/') + 1;
+	if (root->next)
+		many = 1;
+	if ((ft_strchr(options, 'l') && many) || ft_strchr(options, 'R'))
+	{
+		if (name[0] != '.' || ft_strchr(options, 'a'))
 		{
-			if (name[0] != '.' || ft_strchr(options, 'a'))
-			{
-				ft_putstr(root->name);
-				ft_putstr(":\n");
-				ft_display_files(root->files, options);
-				ft_putstr("\n");
-			}
-		}
-		else
+			ft_putstr(root->name);
+			ft_putstr(":\n");
 			ft_display_files(root->files, options);
-		/*root = root->next;
-	}*/
+			ft_putstr("\n");
+		}
+	}
+	else
+		ft_display_files(root->files, options);
 }
 
 void	ft_display_files(t_file *files, char *options)

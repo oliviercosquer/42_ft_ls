@@ -18,10 +18,12 @@ OBJECT_FILES = $(patsubst %, %.o, $(SRCS))
 #CFLAGS = -Wall -Werror -Wall
 CC = gcc -m32
 
-all: libft $(NAME)
+all: libft_all ${NAME}
 
-libft:
-	@echo compilation de la library
+libft_all:
+	@make -C $(LIBDIR) all
+
+libft_make:
 	@make -C $(LIBDIR)
 
 libft_clean:
@@ -32,12 +34,16 @@ libft_fclean:
 
 libft_re: libft_fclean
 	make -C $(LIBDIR) re
-$(NAME):
-	$(CC) -c $(CFLAGS) $(patsubst %, -I%, $(INCLUDES_PATH)) $(SRCS_FILES) $(LIB)
+
+${NAME}: libft_make
+	@echo Compilation ft_ls
+	@$(CC) -c $(CFLAGS) $(patsubst %, -I%, $(INCLUDES_PATH)) $(SRCS_FILES) $(LIB)
 	@$(CC) -o $(NAME) $(CFLAGS) $(OBJECT_FILES) $(LIB)
 
-clean libft_clean:
-	rm -rf *.o
-fclean: clean
-	rm -rf $(NAME)
+clean: libft_clean
+	@rm -rf *.o
+
+fclean: clean libft_fclean
+	@rm -rf $(NAME)
+
 re: libft_re fclean all

@@ -8,6 +8,7 @@ t_file	*ft_read(char *path, char *options)
 	stream_folder = NULL;
 	stream_folder = opendir(path);
 	root = NULL;
+
 	if (stream_folder)
 	{
 		root = ft_new_file(NULL);
@@ -44,13 +45,13 @@ void	ft_read_folder(DIR *stream, char *options, t_file *root)
 		ft_add_file(file, root);
 		if (file && ft_is_folder(file) && ft_strchr(options, 'R'))
 		{
-			ft_putstr("SEG\n");
+			//ft_putstr("SEG\n");
 			if (ft_strcmp(file->name, ".") != 0
 							&& ft_strcmp(file->name, "..") != 0)
 			{
-				ft_putstr("SEG\n");
+				//ft_putstr("SEG\n");
 				new_path = ft_get_real_path(file->name, file->parent);
-				printf("path: %s\n", new_path);
+				//printf("path: %s\n", new_path);
 				sub_folder = ft_read(new_path, options);
 				ft_add_folder(sub_folder, root);
 			}

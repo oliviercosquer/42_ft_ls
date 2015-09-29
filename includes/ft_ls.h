@@ -46,6 +46,7 @@ char	*ft_get_full_path(char *filename, t_file *folder);
 char	*ft_get_real_path(char *filename, t_file *folder);
 
 //ft_file2
+t_file	*ft_create_root(int argc, char **argv);
 void	ft_add_file(t_file *file, t_file *root);
 void	ft_add_folder(t_file *folder, t_file *root);
 char	*ft_get_perms(mode_t bin_perms);
