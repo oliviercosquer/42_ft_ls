@@ -16,7 +16,7 @@ LIB = -L$(LIBDIR) -lft
 SRCS_FILES = $(patsubst %, $(SRCS_PATH)/%.c, $(SRCS))
 OBJECT_FILES = $(patsubst %, %.o, $(SRCS))
 #CFLAGS = -Wall -Werror -Wall
-CC = gcc
+CC = gcc -m32
 
 all: libft $(NAME)
 
@@ -36,8 +36,8 @@ $(NAME):
 	$(CC) -c $(CFLAGS) $(patsubst %, -I%, $(INCLUDES_PATH)) $(SRCS_FILES) $(LIB)
 	@$(CC) -o $(NAME) $(CFLAGS) $(OBJECT_FILES) $(LIB)
 
-clean:
+clean libft_clean:
 	rm -rf *.o
 fclean: clean
 	rm -rf $(NAME)
-re: fclean all
+re: libft_re fclean all
