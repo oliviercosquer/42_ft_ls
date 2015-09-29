@@ -12,7 +12,7 @@ int		main(int argc, char **argv)
 	options = ft_get_options(argc, argv);
 	if (ft_check_errors(argc, argv, options))
 		return (0);
-	if (argc == 1 || (argc == 2 && ft_strchr(argv[1], '-') > 0))
+	if (argc == 1 || (argc == 2 && ft_strlen(options) > 0))
 	{
 		path = ft_strdup("./");
 		folder = ft_read(path, options);
@@ -35,7 +35,5 @@ int		main(int argc, char **argv)
 			i++;
 		}
 	}
-	ft_order(&folder, options);
-	ft_display_folder(folder, options);
 	return (0);
 }

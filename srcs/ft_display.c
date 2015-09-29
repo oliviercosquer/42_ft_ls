@@ -1,29 +1,14 @@
 #include <ft_ls.h>
 
-char	*ft_get_options(int argc, char **argv)
-{
-	char	*options;
-	int		i;
-
-	options = NULL;
-	i = 1;
-	while (i < argc && options == NULL)
-	{
-		if (ft_strchr(argv[i], '-'))
-			options = ft_strdup(argv[i] + 1);
-		i++;
-	}
-	return (options);
-}
-
 void	ft_display_folder(t_file *root, char *options)
 {
 	int		many;
 	char	*name;
 
 	many = 0;
-	while (root)
-	{
+	(void)root;
+	/*while (root)
+	{*/
 		name = ft_strchr(root->name, '/') + 1;
 		if (root->next)
 			many = 1;
@@ -39,8 +24,8 @@ void	ft_display_folder(t_file *root, char *options)
 		}
 		else
 			ft_display_files(root->files, options);
-		root = root->next;
-	}
+		/*root = root->next;
+	}*/
 }
 
 void	ft_display_files(t_file *files, char *options)

@@ -6,6 +6,7 @@ SRCS = 	main \
 		ft_display \
 		ft_order \
 		ft_tools \
+		ft_options \
 		ft_errors
 SRCS_PATH = ./srcs
 INCLUDES_PATH = ./includes/ \
@@ -14,7 +15,7 @@ LIBDIR = ./libft/
 LIB = -L$(LIBDIR) -lft
 SRCS_FILES = $(patsubst %, $(SRCS_PATH)/%.c, $(SRCS))
 OBJECT_FILES = $(patsubst %, %.o, $(SRCS))
-CFLAGS = -Wall -Werror -Wall
+#CFLAGS = -Wall -Werror -Wall
 CC = gcc
 
 all: libft $(NAME)
