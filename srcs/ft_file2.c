@@ -28,22 +28,22 @@ t_file	*ft_create_root(int argc, char **argv)
 
 void	ft_add_file(t_file *file, t_file *root)
 {
-	if (root->files)
+	if (root->children)
 	{
-		root = root->files;
-		while (root->next)
-			root = root->next;
-		root->next = file;
+		root = root->children;
+		while (root->left)
+			root = root->left;
+		root->left = file;
 	}
 	else
-		root->files = file;
+		root->children = file;
 }
 
 void	ft_add_folder(t_file *folder, t_file *root)
 {
-	while (root->next)
-			root = root->next;
-	root->next = folder;
+	while (root->left)
+			root = root->left;
+	root->left = folder;
 }
 
 char	*ft_get_perms(mode_t bin_perms)

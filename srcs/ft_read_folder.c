@@ -50,7 +50,7 @@ void	ft_read_folder(DIR *stream, char *options, t_file *root)
 							&& ft_strcmp(file->name, "..") != 0)
 			{
 				//ft_putstr("SEG\n");
-				new_path = ft_get_real_path(file->name, file->parent);
+				new_path = ft_get_real_path(file->name, file->root);
 				//printf("path: %s\n", new_path);
 				sub_folder = ft_read(new_path, options);
 				ft_add_folder(sub_folder, root);
@@ -66,7 +66,7 @@ int		ft_is_folder(t_file *file)
 	char		*path;
 
 	file_stat = (struct stat *)malloc(sizeof(struct stat));
-	path = ft_get_real_path(file->name, file->parent);
+	path = ft_get_real_path(file->name, file->root);
 	is_folder = 0;
 	stat(path, file_stat);
 	if (S_ISDIR(file_stat->st_mode))

@@ -25,7 +25,7 @@ int		main(int argc, char **argv)
 		while (folder)
 		{
 			ft_read(folder->name, options);
-			folder = folder->next;
+			folder = folder->left;
 		}
 	}
 	return (0);

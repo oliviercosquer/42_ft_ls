@@ -5,6 +5,8 @@ SRCS = 	main \
 		ft_read_folder \
 		ft_display \
 		ft_order \
+		ft_order_asc \
+		ft_order_desc \
 		ft_tools \
 		ft_options \
 		ft_errors
@@ -37,7 +39,7 @@ libft_re: libft_fclean
 
 ${NAME}: libft_make
 	@echo Compilation ft_ls
-	@$(CC) -c $(CFLAGS) $(patsubst %, -I%, $(INCLUDES_PATH)) $(SRCS_FILES) $(LIB)
+	@$(CC) -c -fdump-rtl-expand $(CFLAGS) $(patsubst %, -I%, $(INCLUDES_PATH)) $(SRCS_FILES) $(LIB)
 	@$(CC) -o $(NAME) $(CFLAGS) $(OBJECT_FILES) $(LIB)
 
 clean: libft_clean

@@ -9,7 +9,7 @@ void	ft_display_folder(t_file *root, char *options)
 	(void)root;
 
 	name = ft_strchr(root->name, '/') + 1;
-	if (root->next)
+	if (root->left)
 		many = 1;
 	if ((ft_strchr(options, 'l') && many) || ft_strchr(options, 'R'))
 	{
@@ -17,12 +17,12 @@ void	ft_display_folder(t_file *root, char *options)
 		{
 			ft_putstr(root->name);
 			ft_putstr(":\n");
-			ft_display_files(root->files, options);
+			ft_display_files(root->children, options);
 			ft_putstr("\n");
 		}
 	}
 	else
-		ft_display_files(root->files, options);
+		ft_display_files(root->children, options);
 }
 
 void	ft_display_files(t_file *files, char *options)
@@ -36,7 +36,7 @@ void	ft_display_files(t_file *files, char *options)
 			ft_putstr(files->name);
 			ft_putstr("  ");
 		}
-		files = files->next;
+		files = files->left;
 	}
 
 	if (ft_strchr(options, 'l') == 0)
