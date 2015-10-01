@@ -56,11 +56,30 @@ void	ft_display_lfiles(t_file *files, char *options)
 			ft_putstr(files->owner);
 			ft_putstr(" ");
 			ft_putstr(files->group);
-			ft_putstr(" ");
+			ft_putstr("\t");
 			ft_putoff_t(files->size);
-			ft_putstr(" ");
+			ft_putstr("\t");
+			ft_display_time(files->access_time);
+			ft_putstr("\e[34m");
 			ft_putstr(files->name);
+			ft_putstr("\e[39m");
 			ft_putstr("\n");
 		}
+	}
+}
+
+void ft_display_time(char *time)
+{
+	char	**info;
+
+	info = ft_strsplit(time, ' ');
+	if (info)
+	{
+		ft_putstr(info[1]);
+		ft_putstr(" ");
+		ft_putstr(info[2]);
+		ft_putstr(" ");
+		write(1, info[3], ft_strlen(info[3]) - 3);
+		ft_putstr(" ");
 	}
 }

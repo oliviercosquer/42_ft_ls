@@ -31,6 +31,7 @@ typedef struct	s_file
 void	ft_display_folder(t_file *root, char *options);
 void	ft_display_files(t_file *files, char *options);
 void	ft_display_lfiles(t_file *file, char *options);
+void	ft_display_time(char *time);
 
 //ft_errors
 void	ft_check_files(char *path);

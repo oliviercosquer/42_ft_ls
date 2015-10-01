@@ -26,13 +26,14 @@ void	ft_fill_file_info(t_file *file,struct dirent *dir)
 		pwd = getpwuid(st->st_uid);
 		grp = getgrgid(st->st_gid);
 		file->perms = ft_get_perms(st->st_mode);
+		file->size = st->st_size;
+		file->hard_links = st->st_nlink;
+		file->access_time = (char *)ctime(&(st->st_ctime));
+		if (pwd)
+			file->owner = ft_strdup(pwd->pw_name);
+		if (grp)
+			file->group = ft_strdup(grp->gr_name);
 	}
-	file->size = st->st_size;
-	file->hard_links = st->st_nlink;
-	if (pwd)
-		file->owner = ft_strdup(pwd->pw_name);
-	if (grp)
-		file->group = ft_strdup(grp->gr_name);
 }
 
 char	*ft_get_full_path(char *filename, t_file *folder)
